@@ -1,10 +1,13 @@
-﻿namespace ShareView.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ShareView.Model
 {
     public class Rating
     {
-        public int RatingID { get; set; }
+        [Key]
+        public int ID { get; set; }
         public int Rate { get; set; } = 5;
-        public string Product { get; set; }
-        public string User { get; set; }
+        public Product ProductID { get; set; }
+        public User UserID { get; set; }
     }
 }

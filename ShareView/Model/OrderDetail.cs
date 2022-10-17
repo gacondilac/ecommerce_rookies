@@ -1,10 +1,13 @@
-﻿namespace ShareView.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ShareView.Model
 {
     public class OrderDetail
     {
-        public int OrderDetailID { get; set; }
-        public int ProductID { get; set; }
-        public int OrderID { get; set; }
+        [Key]
+        public int ID { get; set; }
+        public Product ProductID { get; set; }
+        public Order OrderID { get; set; }
         public float Price { get; set; }
         public int NumProduct { get; set; }
 

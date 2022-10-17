@@ -1,9 +1,15 @@
-﻿namespace ShareView.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ShareView.Model
 {
     public class Product
     {
-        public int ProductID { get; set; }
-        public int CategoryID { get; set; }
+        [Key]
+        public int ID { get; set; }
+
+        public Category CategoryID { get; set; }
+        [Column("Description")]
         public string Title { get; set; }
         public float Price { get; set; }
         public string Description { get; set; }
