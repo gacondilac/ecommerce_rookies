@@ -7,3 +7,5 @@
 * Microsoft.EntityFrameworkCore.SqlSever
 * Microsoft.EntityFrameworkCore.Tools
 * Microsoft.EntityFrameworkCore.Design
+## Progress reports
+[Progress Report Week 1](https://drive.google.com/file/d/1-WX1YNg_JMm6_66QxsqTbe-mz_RfI0Ek/view?usp=sharing)
