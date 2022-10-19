@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ShareView.Model
+namespace BackendAPI.Models
 {
     public class Category
     {
         [Key]   
-        public int CategoryID { get; set; }
+        public int ID { get; set; }
         [Required]
         public string Name { get; set; }
     }

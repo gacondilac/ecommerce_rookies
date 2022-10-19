@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\source\\repos\\RookiesShop\\BackendAPI\\BackendAPI.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\ecommerce_rookies\\BackendAPI\\BackendAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\source\\repos\\RookiesShop\\BackendAPI\\BackendAPI.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\ecommerce_rookies\\BackendAPI\\BackendAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\RookiesShop\\BackendAPI\\BackendAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\ecommerce_rookies\\BackendAPI\\BackendAPI.csproj",
         "projectName": "BackendAPI",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\RookiesShop\\BackendAPI\\BackendAPI.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\ecommerce_rookies\\BackendAPI\\BackendAPI.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\RookiesShop\\BackendAPI\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\ecommerce_rookies\\BackendAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,34 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"

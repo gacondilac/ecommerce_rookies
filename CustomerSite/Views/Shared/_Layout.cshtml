@@ -6,18 +6,11 @@
     <title> RookStore</title>
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CustomerSite.styles.css" asp-append-version="true" />
 </head>
 <body>
       
     <partial name="Navbar"></partial>
-    <section id="hero">
-        <h4>Trade-in-offer</h4>
-        <h2>Super value deal</h2>
-        <h1>On all product</h1>
-        <p>Save more with coupons & up to 70% off!</p>
-        <button>Shop now</button>
-    </section>
+    <partial name="Banner"></partial>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\source\\repos\\RookiesShop\\CustomerSite\\CustomerSite.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\ecommerce_rookies\\CustomerSite\\CustomerSite.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\source\\repos\\RookiesShop\\CustomerSite\\CustomerSite.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\ecommerce_rookies\\CustomerSite\\CustomerSite.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\RookiesShop\\CustomerSite\\CustomerSite.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\ecommerce_rookies\\CustomerSite\\CustomerSite.csproj",
         "projectName": "CustomerSite",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\RookiesShop\\CustomerSite\\CustomerSite.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\ecommerce_rookies\\CustomerSite\\CustomerSite.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\RookiesShop\\CustomerSite\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\ecommerce_rookies\\CustomerSite\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

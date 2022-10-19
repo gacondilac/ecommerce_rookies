@@ -1,18 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ShareView.Model
+namespace BackendAPI.Models
 {
     public class Order
     {
         [Key]
         public int ID { get; set; }
         [Required]
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Address { get; set; }
+        public int UserID { get; set; }
+        [Required]
         public DateTime OrderDate { get; set; }
         public string Note  { get; set; }
-        public User UserID { get; set; }
+        public int ProductID { get; set; }
     }
 }

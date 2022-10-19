@@ -8,45 +8,49 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CustomerSite
 build_property.RootNamespace = CustomerSite
-build_property.ProjectDir = C:\Users\Admin\source\repos\RookiesShop\CustomerSite\
+build_property.ProjectDir = C:\Users\Admin\source\repos\ecommerce_rookies\CustomerSite\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Admin\source\repos\RookiesShop\CustomerSite
+build_property.MSBuildProjectDirectory = C:\Users\Admin\source\repos\ecommerce_rookies\CustomerSite
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Admin/source/repos/RookiesShop/CustomerSite/Views/Home/Index.cshtml]
+[C:/Users/Admin/source/repos/ecommerce_rookies/CustomerSite/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/source/repos/RookiesShop/CustomerSite/Views/Home/Privacy.cshtml]
+[C:/Users/Admin/source/repos/ecommerce_rookies/CustomerSite/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/source/repos/RookiesShop/CustomerSite/Views/Shared/Error.cshtml]
+[C:/Users/Admin/source/repos/ecommerce_rookies/CustomerSite/Views/Shared/Banner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEJhbm5lci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/source/repos/ecommerce_rookies/CustomerSite/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/source/repos/RookiesShop/CustomerSite/Views/Shared/Footer.cshtml]
+[C:/Users/Admin/source/repos/ecommerce_rookies/CustomerSite/Views/Shared/Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEZvb3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/source/repos/RookiesShop/CustomerSite/Views/Shared/Navbar.cshtml]
+[C:/Users/Admin/source/repos/ecommerce_rookies/CustomerSite/Views/Shared/Navbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5hdmJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/source/repos/RookiesShop/CustomerSite/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Admin/source/repos/ecommerce_rookies/CustomerSite/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/source/repos/RookiesShop/CustomerSite/Views/_ViewImports.cshtml]
+[C:/Users/Admin/source/repos/ecommerce_rookies/CustomerSite/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/source/repos/RookiesShop/CustomerSite/Views/_ViewStart.cshtml]
+[C:/Users/Admin/source/repos/ecommerce_rookies/CustomerSite/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/source/repos/RookiesShop/CustomerSite/Views/Shared/_Layout.cshtml]
+[C:/Users/Admin/source/repos/ecommerce_rookies/CustomerSite/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-0zhrz4idoo

@@ -1,0 +1,73 @@
+﻿@import url('link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .navbar-left li {
+        list-style: none;
+        padding: 0 20px;
+        position: relative;
+    }
+
+        .navbar-left li a {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            transition: 0.3s ease;
+        }
+
+            .navbar-left li a:hover,
+            .navbar-left li a.active {
+                color: #088178;
+            }
+
+                .navbar-left li a.active::after,
+                .navbar-left li a:hover::after {
+                    content: "";
+                    width: 30%;
+                    height: 2px;
+                    background: #088178;
+                    position: absolute;
+                    bottom: -4px;
+                    left: 20px;
+                }
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .navbar-right li {
+        list-style: none;
+        padding: 0 20px;
+        position: relative;
+    }
+
+        .navbar-right li a {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            transition: 0.3s ease;
+        }
+
+            .navbar-right li a:hover,
+            .navbar-right li a.active {
+                color: #088178;
+            }
+
+                .navbar-right li a.active::after,
+                .navbar-right li a:hover::after {
+                    content: "";
+                    width: 30%;
+                    height: 2px;
+                    background: #088178;
+                    position: absolute;
+                    bottom: -4px;
+                    left: 20px;
+                }
