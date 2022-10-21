@@ -13,7 +13,11 @@ namespace CustomerSite.Models
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter a value bigger than 0")]
         public float Price { get; set; }
+        [Required]
+        [Column("ImageURL")]
+        public string Image { get; set; }
         public string Description { get; set; }
+        public int CategoryID { get; set; }
 
     }
 }

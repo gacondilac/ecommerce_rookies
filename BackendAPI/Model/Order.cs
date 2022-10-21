@@ -7,10 +7,12 @@ namespace BackendAPI.Models
         [Key]
         public int ID { get; set; }
         [Required]
-        public int UserID { get; set; }
+        public int OrderID { get; set; }
+        [Required]
+        public int ProductID { get; set; }
         [Required]
         public DateTime OrderDate { get; set; }
-        public string Note  { get; set; }
-        public int ProductID { get; set; }
+
+        
     }
 }

@@ -7,7 +7,7 @@ namespace BackendAPI.Models
     {
         [Key]
         public int ID { get; set; }
-        public int OrderID { get; set; }
+        public int UserID { get; set; }
         [Required]
         public int NumProduct { get; set; }
         [Required]

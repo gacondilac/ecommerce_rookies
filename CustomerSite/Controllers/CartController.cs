@@ -6,16 +6,15 @@ using System.Net.Http.Headers;
 
 namespace CustomerSite.Controllers
 {
-    public class HomeController : Controller
+    public class CartController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CartController> _logger;
         string baseUrl = "https://localhost:7264/api/";
 
-        public HomeController(ILogger<HomeController> logger)
+        public CartController(ILogger<CartController> logger)
         {
             _logger = logger;
         }
-
         public async Task<IActionResult> Index()
         {
             IEnumerable<Product> products = null;
@@ -35,18 +34,6 @@ namespace CustomerSite.Controllers
                 }
             }
             return View(products);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
