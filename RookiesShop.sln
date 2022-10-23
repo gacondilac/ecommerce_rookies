@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerSite", "CustomerSite\CustomerSite.csproj", "{D46904EE-E397-4783-8AFD-9B168AE651DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RookiesShop.CustomerSite", "RookiesShop.CustomerSite\RookiesShop.CustomerSite.csproj", "{D46904EE-E397-4783-8AFD-9B168AE651DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendAPI", "BackendAPI\BackendAPI.csproj", "{7A8177DD-CA69-402C-96A8-4DD0788F7311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RookiesShop.Api", "RookiesShop.Api\RookiesShop.Api.csproj", "{7A8177DD-CA69-402C-96A8-4DD0788F7311}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RookiesShop.Dto", "RookiesShop.Dto\RookiesShop.Dto.csproj", "{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7A8177DD-CA69-402C-96A8-4DD0788F7311}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A8177DD-CA69-402C-96A8-4DD0788F7311}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A8177DD-CA69-402C-96A8-4DD0788F7311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
