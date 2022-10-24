@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RookiesShop.Api.Data;
-using RookiesShop.Api.Models;
+using RookiesShop.Api.Model;
 
 namespace RookiesShop.Api.Controllers
 {
@@ -27,14 +27,14 @@ namespace RookiesShop.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> Getproducts()
         {
-            return await _context.products.ToListAsync();
+            return await _context.Products.ToListAsync();
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _context.products.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
 
             if (product == null)
             {
@@ -49,7 +49,7 @@ namespace RookiesShop.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
-            if (id != product.ID)
+            if (id != product.Id)
             {
                 return BadRequest();
             }
@@ -80,23 +80,23 @@ namespace RookiesShop.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-            _context.products.Add(product);
+            _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.ID }, product);
+            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var product = await _context.products.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            _context.products.Remove(product);
+            _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -104,7 +104,7 @@ namespace RookiesShop.Api.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.products.Any(e => e.ID == id);
+            return _context.Products.Any(e => e.Id == id);
         }
     }
 }
