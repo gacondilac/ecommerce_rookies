@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RookiesShop.Api.Data;
 using RookiesShop.Api.Model;
+using RookiesShop.Api.Service;
+using RookiesShop.Dto;
 
 namespace RookiesShop.Api.Controllers
 {
@@ -15,33 +13,55 @@ namespace RookiesShop.Api.Controllers
     public class ProductsController : ControllerBase
 
     {
-
-        private readonly RookieShopdbcontext _context;
-
-        public ProductsController(RookieShopdbcontext context)
+        private RookieShopdbcontext _context;
+        private IProductService _IproductService;
+        private IMapper _mapper;
+        public ProductsController(RookieShopdbcontext context, IProductService IproductService, IMapper mapper)
         {
+            _IproductService = IproductService;
+            _mapper = mapper;
             _context = context;
         }
 
+        //
+        //private readonly RookieShopdbcontext _context;
+
+        //public ProductsController(RookieShopdbcontext context)
+        //{
+        //    _context = context;
+        //}
+
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> Getproducts()
+        public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
         {
-            return await _context.Products.ToListAsync();
+            List<Product> Products = await _IproductService.GetProducts();
+            List<ProductDto> ProductsDtos = _mapper.Map<List<ProductDto>>(Products);
+            return ProductsDtos;
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductDto>> GetProductByIds([FromRoute] int id)
         {
-            var product = await _context.Products.FindAsync(id);
-
-            if (product == null)
+            Product Products = await _IproductService.GetProductById(id);
+            if(Products == null)
             {
-                return NotFound();
+                return NotFound("No product with Given Id");
             }
+            ProductDto ProductDtos = _mapper.Map<ProductDto>(Products);
 
-            return product;
+            return ProductDtos;
+        }
+        // POST: api/Products
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Product>> PostProduct(Product product)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetProductByIds", new { id = product.Id }, product);
         }
 
         // PUT: api/Products/5
@@ -75,17 +95,7 @@ namespace RookiesShop.Api.Controllers
             return NoContent();
         }
 
-        // POST: api/Products
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
-        {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
-        }
-
+       
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
@@ -106,6 +116,17 @@ namespace RookiesShop.Api.Controllers
         {
             return _context.Products.Any(e => e.Id == id);
         }
+
+        //private readonly IMapper _mapper;
+        //public ProductsController(IMapper mapper)
+        //{
+        //    _mapper = mapper;
+        //}
+        //[HttpGet]
+        //public ActionResult<List<Product>> GetProduct()
+        //{
+        //    return Ok(_context.Products.Select(Product=> _mapper.Map<ProductDto>(Product)));
+        //}
     }
 }
 
