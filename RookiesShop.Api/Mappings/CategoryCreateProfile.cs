@@ -3,15 +3,16 @@ using RookiesShop.Api.Data;
 using RookiesShop.Dto;
 using Microsoft.AspNetCore.Identity;
 using RookiesShop.Api.Model;
-
 namespace RookiesShop.Api.Mappings
 {
-    public class ProductProfile : Profile
+    public class CategoryCreateProfile :Profile
     {
-        public ProductProfile()
+        public CategoryCreateProfile ()
         {
-            CreateMap<Product, ProductDto>();
+               CreateMap<Category, CategoryDto>();
             
+              
+
         }
     }
 }

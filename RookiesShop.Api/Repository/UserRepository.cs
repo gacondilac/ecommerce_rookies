@@ -3,9 +3,9 @@ using NuGet.Common;
 using RookiesShop.Api.Data;
 using RookiesShop.Api.Model;
 
-namespace RookiesShop.Api.Service
+namespace RookiesShop.Api.Repository
 {
-    public interface IUserService
+    public interface IUserRepository
     {
         public Task<List<Product>> GetProducts();
         public Task<Product> GetProductById(int id);
@@ -15,12 +15,12 @@ namespace RookiesShop.Api.Service
         public Task DeleteProduct(int id);
 
     }
-    public class UserService : IUserService
+    public class UserRepository : IUserRepository
     {
         private RookieShopdbcontext _dbContext;
         private bool disposed=false;
 
-        public UserService(RookieShopdbcontext dbContext)
+        public UserRepository(RookieShopdbcontext dbContext)
         {
             _dbContext = dbContext;
         }

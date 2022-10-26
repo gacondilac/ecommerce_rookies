@@ -13,6 +13,7 @@ namespace RookiesShop.Api.Model
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter a value bigger than 0")]
         public int Price { get; set; }
+        public int Rating { get; set; }
         [Required]
         [Column("ImageURL")]
         public string Image { get; set; }

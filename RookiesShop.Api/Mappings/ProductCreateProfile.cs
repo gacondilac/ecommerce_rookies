@@ -6,11 +6,11 @@ using RookiesShop.Api.Model;
 
 namespace RookiesShop.Api.Mappings
 {
-    public class ProductProfile : Profile
+    public class ProductCreateProfile : Profile
     {
-        public ProductProfile()
+        public ProductCreateProfile()
         {
-            CreateMap<Product, ProductDto>();
+            CreateMap<ProductCreateDto, Product>();
             
         }
     }

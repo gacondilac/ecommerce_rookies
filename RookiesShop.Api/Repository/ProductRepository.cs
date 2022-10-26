@@ -3,24 +3,25 @@ using NuGet.Common;
 using RookiesShop.Api.Data;
 using RookiesShop.Api.Model;
 
-namespace RookiesShop.Api.Service
+namespace RookiesShop.Api.Repository
 {
-    public interface IProductService
+    public interface IProductRepository
     {
         public Task<List<Product>> GetProducts();
         public Task<Product> GetProductById(int id);
         public Task<Product> GetProductByName(string name);
-        public Task CreateProduct(Product product);
+        public Task Create(Product product);
+        bool SaveChanges();
         public void UpdateProduct(Product product);
         public Task DeleteProduct(int id);
 
     }
-    public class ProductService : IProductService
+    public class ProductRepository : IProductRepository
     {
         private RookieShopdbcontext _dbContext;
         private bool disposed=false;
 
-        public ProductService(RookieShopdbcontext dbContext)
+        public ProductRepository(RookieShopdbcontext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -38,18 +39,14 @@ namespace RookiesShop.Api.Service
         {
             return await _dbContext.Products.FindAsync(name);
         }
-        public async Task CreateProduct(Product product)
+        public async Task Create(Product product)
         {
-            Product product1 = new Product();
-            {
-                product1.Name = product.Name;
-                product1.Description = product.Description;
-                product1.Price = product.Price;
-                product1.Image = product.Image;
-                product1.CategoryId = product.CategoryId;
-            }
-            await _dbContext.Products.AddAsync(product1);
-            await _dbContext.SaveChangesAsync();
+            _dbContext.Add(product);
+
+        }
+        public bool SaveChanges()
+        {
+            return (_dbContext.SaveChanges() >= 0);
         }
         public void UpdateProduct(Product product)
         {

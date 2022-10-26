@@ -12,7 +12,7 @@ using RookiesShop.Api.Data;
 namespace RookiesShop.Api.Migrations
 {
     [DbContext(typeof(RookieShopdbcontext))]
-    [Migration("20221024092816_init")]
+    [Migration("20221026121607_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -262,37 +262,14 @@ namespace RookiesShop.Api.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("RookiesShop.Api.Model.Rating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rate")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("RookiesShop.Api.Model.User", b =>
@@ -458,23 +435,6 @@ namespace RookiesShop.Api.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("RookiesShop.Api.Model.Rating", b =>
-                {
-                    b.HasOne("RookiesShop.Api.Model.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RookiesShop.Api.Model.User", "User")
-                        .WithMany("Ratings")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("RookiesShop.Api.Model.Order", b =>
                 {
                     b.Navigation("OrderDetails");
@@ -483,8 +443,6 @@ namespace RookiesShop.Api.Migrations
             modelBuilder.Entity("RookiesShop.Api.Model.User", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,7 +16,6 @@ namespace RookiesShop.Api.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Rating> Ratings { get; set; }
         public DbSet<User> Users { get; set; }
      }
 }

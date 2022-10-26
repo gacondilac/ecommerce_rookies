@@ -1,6 +1,6 @@
 using RookiesShop.Api.Data;
 using Microsoft.EntityFrameworkCore;
-using RookiesShop.Api.Service;
+using RookiesShop.Api.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +15,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<RookieShopdbcontext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("RookieShop")));
 
 //add service
-builder.Services.AddScoped<IProductService,ProductService>();
-builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IUserRepository,UserRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 //next
 var app = builder.Build();
 

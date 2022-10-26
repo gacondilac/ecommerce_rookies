@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RookiesShop.Api.Data;
 using RookiesShop.Api.Model;
-using RookiesShop.Api.Service;
+using RookiesShop.Api.Repository;
 using RookiesShop.Dto;
 
 namespace RookiesShop.Api.Controllers
@@ -14,37 +14,27 @@ namespace RookiesShop.Api.Controllers
 
     {
         private RookieShopdbcontext _context;
-        private IProductService _IproductService;
+        private IProductRepository _IproductRepository;
         private IMapper _mapper;
-        public ProductsController(RookieShopdbcontext context, IProductService IproductService, IMapper mapper)
+        public ProductsController(RookieShopdbcontext context, IProductRepository IproductRepository, IMapper mapper)
         {
-            _IproductService = IproductService;
+            _IproductRepository = IproductRepository;
             _mapper = mapper;
             _context = context;
         }
-
-        //
-        //private readonly RookieShopdbcontext _context;
-
-        //public ProductsController(RookieShopdbcontext context)
-        //{
-        //    _context = context;
-        //}
-
-        // GET: api/Products
         [HttpGet]
         public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
         {
-            List<Product> Products = await _IproductService.GetProducts();
+            List<Product> Products = await _IproductRepository.GetProducts();
             List<ProductDto> ProductsDtos = _mapper.Map<List<ProductDto>>(Products);
             return ProductsDtos;
         }
 
-        // GET: api/Products/5
+        // GET: api/Product/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> GetProductByIds([FromRoute] int id)
         {
-            Product Products = await _IproductService.GetProductById(id);
+            Product Products = await _IproductRepository.GetProductById(id);
             if(Products == null)
             {
                 return NotFound("No product with Given Id");
@@ -53,15 +43,23 @@ namespace RookiesShop.Api.Controllers
 
             return ProductDtos;
         }
+        //done
+        
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        public async Task<ActionResult<ProductCreateDto>> CreateProduct(ProductCreateDto productCreateDto)
         {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+            //mapping to data
+            var productModel=_mapper.Map<Product>(productCreateDto);
+            _IproductRepository.Create(productModel);
+            _IproductRepository.SaveChanges();
+            //mapp from product to dto
+            var productDto =_mapper.Map<ProductDto>(productModel);
+          
+            return Ok(productDto);
 
-            return CreatedAtAction("GetProductByIds", new { id = product.Id }, product);
+            
         }
 
         // PUT: api/Products/5
