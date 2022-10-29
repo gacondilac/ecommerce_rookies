@@ -1,7 +1,19 @@
+
+using RookiesShop.CustomerSite.Services;
+using Refit;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Add IHttpClientFactory and put it in Dependency injection then use it to call api as a client
+builder.Services.AddHttpClient("", opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["ApiUrl"] ?? "");
+});
+// Add Services to DI Container
+builder.Services.AddScoped<IProductService, ProductService>();
+
 
 var app = builder.Build();
 
