@@ -37,7 +37,7 @@
                                 </div>
                                 <h4>$@item.Price</h4>
                             </div>
-                            <a href="#"><i class="fa-solid fa-cart-shopping cart" ></i></a>
+                            <a asp-controller="Detail" asp-action="Index" asp-route-id="@item.Id"><i class="fa-solid fa-cart-shopping cart" ></i></a>
                         </div>
                     </div>
                 }

@@ -65,18 +65,19 @@ namespace RookiesShop.Api.Controllers
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
+        public async Task<ActionResult<ProductDto>> PutProduct(int id, ProductDto productDto)
         {
-            if (id != product.Id)
+            if (id != productDto.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(product).State = EntityState.Modified;
+            var product = _mapper.Map<Product>(productDto);
+            _IproductRepository.UpdateProduct(product);
+            
 
             try
             {
-                await _context.SaveChangesAsync();
+                _IproductRepository.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RookiesShop.CustomerSite", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RookiesShop.Api", "RookiesShop.Api\RookiesShop.Api.csproj", "{7A8177DD-CA69-402C-96A8-4DD0788F7311}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RookiesShop.Dto", "RookiesShop.Dto\RookiesShop.Dto.csproj", "{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RookiesShop.Dto", "RookiesShop.Dto\RookiesShop.Dto.csproj", "{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

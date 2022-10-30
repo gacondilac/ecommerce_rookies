@@ -8,6 +8,8 @@ namespace RookiesShop.CustomerSite.DataAccess
     {
         [Get("/api/Products")]
         Task<List<ProductDto>> GetAllProducts();
+        [Get("/api/Products/{id}")]
+        Task<ProductDto> GetProductByid(int id);
     }
     
 }

@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Diagnostics;
-using System.Net.Http.Headers;
-using RookiesShop.CustomerSite.Models;
 using RookiesShop.Dto;
 using RookiesShop.CustomerSite.Services;
 
@@ -21,7 +17,7 @@ namespace RookiesShop.CustomerSite.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-          
+
             //using HttpClientFactory
             //IEnumerable<ProductDto> products = null;
             //using (var client = new HttpClient())
@@ -36,7 +32,7 @@ namespace RookiesShop.CustomerSite.Controllers
             //    {
             //        string results = getData.Content.ReadAsStringAsync().Result;
             //        products = JsonConvert.DeserializeObject<IEnumerable<ProductDto>>(results);
-                
+
             //    }
             //}
             //return View(products);
@@ -51,16 +47,9 @@ namespace RookiesShop.CustomerSite.Controllers
             return View(listProducts);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+
+
     }
 }

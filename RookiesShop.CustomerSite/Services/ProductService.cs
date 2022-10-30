@@ -6,6 +6,7 @@ namespace RookiesShop.CustomerSite.Services
     public interface IProductService
     {
         public Task<IEnumerable<ProductDto>> GetProducts();
+        public Task<ProductDto> GetProductById(int id);
 
     }
     public class ProductService : IProductService
@@ -19,6 +20,10 @@ namespace RookiesShop.CustomerSite.Services
         public async Task<IEnumerable<ProductDto>> GetProducts()
         {
             return await _productInterface.GetAllProducts();
+        }
+        public async Task<ProductDto> GetProductById(int Id)
+        {
+            return await _productInterface.GetProductByid(Id);
         }
     }
 }

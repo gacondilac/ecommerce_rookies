@@ -29,64 +29,100 @@ namespace RookiesShop.Api.Controllers
             List<CategoryDto> CategoryDtos = _mapper.Map<List<CategoryDto>>(Categories);
             return CategoryDtos;
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CategoryDto>> GetProductByIds([FromRoute] int id)
+        {
+            Category Categories = await _IcategoryRepository.GetCategoryById(id);
+            if (Categories == null)
+            {
+                return NotFound("No product with Given Id");
+            }
+            CategoryDto CategoryDtos = _mapper.Map<CategoryDto>(Categories);
+
+            return CategoryDtos;
+        }
 
         // GET: api/Product/5
-        
+
         //done
-        
+
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPost]
-        //public async Task<ActionResult<ProductCreateDto>> CreateCategory(CategoryCreateDto categoryCreateDto)
-        //{
-        //    //mapping to data
-        //    var categoryModel=_mapper.Map<Category>(categoryCreateDto);
-        //    _IcategoryService.Create(categoryModel);
-        //    _IcategoryService.SaveChanges();
-        //    //mapp from product to dto
-        //    var categoryDto =_mapper.Map<CategoryCreateDto>(categoryModel);
-          
-        //    return Ok(categoryDto);
+        [HttpPost]
+        public async Task<ActionResult<CategoryCreateDto>> CreateCategory(CategoryCreateDto categoryCreateDto)
+        {
+            //mapping to data
+            var categoryModel = _mapper.Map<Category>(categoryCreateDto);
+            _IcategoryRepository.Create(categoryModel);
+            _IcategoryRepository.SaveChanges();
+            //mapp from product to dto
+            var categoryDto = _mapper.Map<CategoryDto>(categoryModel);
 
-            
-        //}
+            return Ok(categoryDto);
+        }
 
-        // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-      
+        //PUT
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCategoryModel(int id, CategoryDto categoryDto)
+        {
+            if (id != categoryDto.Id)
+            {
+                return BadRequest();
+            }
 
-       
-        // DELETE: api/Products/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteCategory(int id)
-        //{
-        //    var category = await _context.Categories.FindAsync(id);
-        //    if (category == null)
-        //    {
-        //        return NotFound();
-        //    }
+            _context.Entry(categoryDto).State = EntityState.Modified;
 
-        //    _context.Categories.Remove(category);
-        //    await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CategoryExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
 
-        //private bool CategoryExists(int id)
-        //{
-        //    return _context.Categories.Any(e => e.Id == id);
-        //}
 
-        //private readonly IMapper _mapper;
-        //public ProductsController(IMapper mapper)
-        //{
-        //    _mapper = mapper;
-        //}
-        //[HttpGet]
-        //public ActionResult<List<Product>> GetProduct()
-        //{
-        //    return Ok(_context.Products.Select(Product=> _mapper.Map<ProductDto>(Product)));
-        //}
-    }
+        //DELETE: api/Products/5
+        [HttpDelete("{id}")]
+       public async Task<IActionResult> DeleteCategory(int id)
+       {
+                var category = await _context.Categories.FindAsync(id);
+                if (category == null)
+                {
+                    return NotFound();
+                }
+
+                _context.Categories.Remove(category);
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }
+
+            private bool CategoryExists(int id)
+            {
+                return _context.Categories.Any(e => e.Id == id);
+            }
+
+            //private readonly IMapper _mapper;
+            //public ProductsController(IMapper mapper)
+            //{
+            //    _mapper = mapper;
+            //}
+            //[HttpGet]
+            //public ActionResult<List<Product>> GetProduct()
+            //{
+            //    return Ok(_context.Products.Select(Product=> _mapper.Map<ProductDto>(Product)));
+            //}
+        }
 }
 

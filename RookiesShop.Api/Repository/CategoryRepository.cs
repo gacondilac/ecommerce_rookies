@@ -8,6 +8,7 @@ namespace RookiesShop.Api.Repository
     public interface ICategoryRepository
     {
         public Task<List<Category>> GetCategory();
+        public Task<Category> GetCategoryById(int id);
         public Task Create(Category category);
         bool SaveChanges();
         public void UpdateCategory(Category category);
@@ -29,7 +30,10 @@ namespace RookiesShop.Api.Repository
         {
             return await _dbContext.Categories.ToListAsync();
         }
-      
+         public async Task<Category> GetCategoryById( int id)
+        {
+            return await _dbContext.Categories.FindAsync(id);
+        }
        
         public async Task Create(Category category)
         {

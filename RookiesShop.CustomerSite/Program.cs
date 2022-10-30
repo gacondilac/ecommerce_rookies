@@ -15,6 +15,7 @@ builder.Services.AddHttpClient("", opt =>
 builder.Services.AddScoped<IProductService, ProductService>();
 
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

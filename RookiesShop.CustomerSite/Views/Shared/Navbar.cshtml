@@ -17,7 +17,7 @@
                 <div class="collapse navbar-collapse justify-content-between"
                      id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="\Home" class="nav-item nav-link active">Home</a>
+                        <a href="/Home" class="nav-item nav-link active">Home</a>
 
                         <div class="nav-item dropdown">
                             <a 
@@ -35,8 +35,8 @@
                         </div>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="" class="nav-item nav-link">Login</a>
-                        <a href="" class="nav-item nav-link">Register</a>
+                        <a  asp-controller="Account" asp-action="Login" class="nav-item nav-link">Login</a>
+                        <a asp-controller ="Account" asp-action="Register" class="nav-item nav-link">Register</a>
                     </div>
                 </div>
             </nav> 
