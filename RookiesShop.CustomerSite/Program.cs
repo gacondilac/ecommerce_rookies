@@ -1,6 +1,8 @@
 
 using RookiesShop.CustomerSite.Services;
 using Refit;
+using RookiesShop.Dto;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,7 @@ builder.Services.AddHttpClient("", opt =>
 });
 // Add Services to DI Container
 builder.Services.AddScoped<IProductService, ProductService>();
+
 
 
 

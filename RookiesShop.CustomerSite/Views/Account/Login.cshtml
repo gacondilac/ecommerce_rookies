@@ -9,10 +9,10 @@
     </div>
     <form action="">
         <div class="form-group">
-            <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
+            <input type="text" class="form-control border-1 py-4" placeholder="Email Address" required="required" />
         </div>
         <div class="form-group">
-            <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
+            <input type="password" class="form-control border-1 py-4" placeholder="Password"
                    required="required" />
         </div>
         <div>
@@ -23,22 +23,22 @@
             
                  <div class="row">
 
-                    <ul class="col-md-6 mb-5">
+                    <ul class="col-md-6 mb-2">
                         <li class="switch-slide">
                             <label class="switch">
                              <input type="checkbox">
                                  <span class="slider round text-right"></span>
-                                  keep Logged in
+                                  Keep Logged in
                             </label>
-                        </li>
+                        </li>   
                         <li>
                              <a href="#" class="text-right">Forgot password?</a>
                         </li>
 
                      </ul>
-                    <ul class="col-md-6 mb-5">
+                    <ul class="col-md-6 mb-2">
                         <li class="">
-                            <a href="register.html" class="">Don't have an Account?</a>
+                            <a asp-controller="Account" asp-action="Register" class="">Don't have an Account?</a>
                         </li>
                         <li>
                             <a href="#" class="text-right">Need Help?</a>

@@ -21,13 +21,13 @@
         <div class="col-lg-5 pb-5">
 
             @{
-                var path = "~/products/" + Model.Image + ".jpg";
+                var path = "/img/products/" + Model.Image + ".jpg";
               }
-            <img src=@Path alt="img" />
+            <img class="img-fluid" src=@path alt="img" />
         </div>
      
         <div class="col-lg-7 pb-5">
-            <h3 class="font-weight-semi-bold">@Model.Name </h3>
+            <h3 class="font-weight-semi-bold">@Model.Name</h3>
             <div class="d-flex mb-3">
                 <div class="text-primary mr-2 star ">
                     <small class="fas fa-star"></small>
