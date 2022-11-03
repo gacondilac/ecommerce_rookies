@@ -18,25 +18,26 @@ namespace RookiesShop.CustomerSite.Controllers
         //    _signInManager = signInManager;
         //    _roleManager = roleManager;
         //}
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
-        //[HttpPost]
-        //public async Task<IActionResult> SignIn(SignInDto signInDto, string ReturnUrl)
-        //{
-        //   return View(signInDto);
-        //}
+        [HttpPost]
+        public async Task<IActionResult> SignIn(SignInDto signInDto, string ReturnUrl)
+        {
+            return View(signInDto);
+        }
 
         public IActionResult Register()
         {
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> Register(RegisterDto registerDto)
-        {
-            return RedirectToAction("Register");
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Register(RegisterDto registerDto)
+        //{
+        //    return RedirectToAction("Register");
+        //}
 
     }
 }

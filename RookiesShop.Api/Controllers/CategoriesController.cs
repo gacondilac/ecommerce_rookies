@@ -61,18 +61,49 @@ namespace RookiesShop.Api.Controllers
             return Ok(categoryDto);
         }
 
-        //PUT
-        
-            //private readonly IMapper _mapper;
-            //public ProductsController(IMapper mapper)
-            //{
-            //    _mapper = mapper;
-            //}
-            //[HttpGet]
-            //public ActionResult<List<Product>> GetProduct()
-            //{
-            //    return Ok(_context.Products.Select(Product=> _mapper.Map<ProductDto>(Product)));
-            //}
+        [HttpPut]
+        public async Task<IActionResult> UpdateCategory( CategoryDto categoryDto)
+        {
+            
+            await _IcategoryRepository.UpdateCategory( categoryDto);
+            return Ok();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool CategoryExists(int id)
+        {
+            return _context.Categories.Any(e => e.Id == id);
+        }
+
+       
+    }
+   
+    //PUT
+
+    //private readonly IMapper _mapper;
+    //public ProductsController(IMapper mapper)
+    //{
+    //    _mapper = mapper;
+    //}
+    //[HttpGet]
+    //public ActionResult<List<Product>> GetProduct()
+    //{
+    //    return Ok(_context.Products.Select(Product=> _mapper.Map<ProductDto>(Product)));
+    //}
 }
+
 

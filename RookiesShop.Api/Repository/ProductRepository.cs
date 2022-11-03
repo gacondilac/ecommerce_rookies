@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
 using RookiesShop.Api.Data;
 using RookiesShop.Api.Model;
+using RookiesShop.Dto;
 
 namespace RookiesShop.Api.Repository
 {
@@ -12,18 +14,19 @@ namespace RookiesShop.Api.Repository
         public Task<Product> GetProductByName(string name);
         public Task Create(Product product);
         bool SaveChanges();
-        public void UpdateProduct(Product product);
-        public Task DeleteProduct(int id);
+        public Task UpdateProduct( ProductDto productDto);
 
     }
     public class ProductRepository : IProductRepository
     {
-        private RookieShopdbcontext _dbContext;
+        private readonly RookieShopdbcontext _dbContext;
+        private readonly IMapper _mapper;
         private bool disposed=false;
 
-        public ProductRepository(RookieShopdbcontext dbContext)
+        public ProductRepository(RookieShopdbcontext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         //method
@@ -48,14 +51,14 @@ namespace RookiesShop.Api.Repository
         {
             return (_dbContext.SaveChanges() >= 0);
         }
-        public void UpdateProduct(Product product)
+        public async Task UpdateProduct( ProductDto productDto)
         {
-            _dbContext.Entry(product).State = EntityState.Modified;
+           
+                var updateProduct = _mapper.Map<Product>(productDto);
+                _dbContext.Products.Update(updateProduct);
+                await _dbContext.SaveChangesAsync();
+            
         }
-        public async Task DeleteProduct(int id)
-        {
-            Product product = await _dbContext.Products.FindAsync(id);
-            _dbContext.Products.Remove(product);
-        }
+       
     }
 }

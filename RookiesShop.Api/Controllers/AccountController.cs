@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RookiesShop.Api.Repository;
 using RookiesShop.Dto;
 
@@ -14,6 +15,7 @@ namespace RookiesShop.Api.Controllers
         {
             _accountRepository = accountRepository;
         }
+
         [HttpPost("SignUp")]
         public async Task<IActionResult> Register(RegisterDto registerDto)
         {

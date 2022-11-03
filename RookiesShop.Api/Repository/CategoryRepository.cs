@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
 using RookiesShop.Api.Data;
 using RookiesShop.Api.Model;
+using RookiesShop.Dto;
 
 namespace RookiesShop.Api.Repository
 {
@@ -11,18 +13,19 @@ namespace RookiesShop.Api.Repository
         public Task<Category> GetCategoryById(int id);
         public Task Create(Category category);
         bool SaveChanges();
-        public void UpdateCategory(Category category);
-        public Task DeleteCategory(int id);
+        public Task UpdateCategory(CategoryDto categoryDto);
 
     }
     public class CategoryRepository : ICategoryRepository
     {
-        private RookieShopdbcontext _dbContext;
+        private readonly RookieShopdbcontext _dbContext;
+        private readonly IMapper _mapper;
         private bool disposed=false;
 
-        public CategoryRepository(RookieShopdbcontext dbContext)
+        public CategoryRepository(RookieShopdbcontext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         //method
@@ -44,14 +47,14 @@ namespace RookiesShop.Api.Repository
         {
             return (_dbContext.SaveChanges() >= 0);
         }
-        public void UpdateCategory(Category category)
-        {
-            _dbContext.Entry(category).State = EntityState.Modified;
+        public async Task UpdateCategory( CategoryDto categoryDto)
+        {   
+           
+                var  updateCategory =_mapper.Map<Category>(categoryDto);
+                _dbContext.Categories.Update(updateCategory);
+                await _dbContext.SaveChangesAsync();
+            
         }
-        public async Task DeleteCategory(int id)
-        {
-            Category category = await _dbContext.Categories.FindAsync(id);
-            _dbContext.Categories.Remove(category);
-        }
+     
     }
 }

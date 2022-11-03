@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RookiesShop.Api", "RookiesS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RookiesShop.Dto", "RookiesShop.Dto\RookiesShop.Dto.csproj", "{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RookiesShop.AdminSite", "RookiesShop.AdminSite\RookiesShop.AdminSite.csproj", "{088B8EC9-492F-460D-AA10-1B6F18CC71E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E28A1BB3-9D76-4501-9597-28C37BDAEFE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{088B8EC9-492F-460D-AA10-1B6F18CC71E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088B8EC9-492F-460D-AA10-1B6F18CC71E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088B8EC9-492F-460D-AA10-1B6F18CC71E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088B8EC9-492F-460D-AA10-1B6F18CC71E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
