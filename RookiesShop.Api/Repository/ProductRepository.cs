@@ -32,7 +32,7 @@ namespace RookiesShop.Api.Repository
         //method
         public async Task<List<Product>> GetProducts()
         {
-            return await _dbContext.Products.ToListAsync();
+            return await _dbContext.Products.Include(product=>product.Category).ToListAsync();
         }
         public async Task<Product> GetProductById(int Id)
         {

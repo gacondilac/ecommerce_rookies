@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
 using RookiesShop.Api.Data;
 using RookiesShop.Api.Model;
@@ -7,49 +8,29 @@ namespace RookiesShop.Api.Repository
 {
     public interface IUserRepository
     {
-        public Task<List<Product>> GetProducts();
-        public Task<Product> GetProductById(int id);
-        public Task<Product> GetProductByName(string name);
-        public Task CreateProduct(Product product);
-        public void UpdateProduct(Product product);
-        public Task DeleteProduct(int id);
+        public Task<List<User>> GetUsers();
+
 
     }
     public class UserRepository : IUserRepository
     {
         private RookieShopdbcontext _dbContext;
-        private bool disposed=false;
+      private UserManager<User> _userManager;
 
-        public UserRepository(RookieShopdbcontext dbContext)
+        public UserRepository(RookieShopdbcontext dbContext,  UserManager<User> userManager )
         {
             _dbContext = dbContext;
+            _userManager = userManager;
         }
 
         //method
-        public async Task<List<Product>> GetProducts()
+        public async Task<List<User>> GetUsers()
         {
-            return await _dbContext.Products.ToListAsync();
+           
+              return _userManager.Users.ToList();
+           
         }
-        public async Task<Product> GetProductById(int Id)
-        {
-            return await _dbContext.Products.FindAsync(Id);
-        }
-        public async Task<Product> GetProductByName(string name)
-        {
-            return await _dbContext.Products.FindAsync(name);
-        }
-        public async Task CreateProduct(Product product)
-        {
-            await _dbContext.Products.AddAsync(product);
-        }
-        public void UpdateProduct(Product product)
-        {
-            _dbContext.Entry(product).State = EntityState.Modified;
-        }
-        public async Task DeleteProduct(int id)
-        {
-            Product product = await _dbContext.Products.FindAsync(id);
-            _dbContext.Products.Remove(product);
-        }
+        
+       
     }
 }

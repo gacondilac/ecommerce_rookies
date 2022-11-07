@@ -30,7 +30,7 @@ namespace RookiesShop.Api.Controllers
             return CategoryDtos;
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<CategoryDto>> GetProductByIds([FromRoute] int id)
+        public async Task<ActionResult<CategoryDto>> GetCategoryByIds([FromRoute] int id)
         {
             Category Categories = await _IcategoryRepository.GetCategoryById(id);
             if (Categories == null)

@@ -15,12 +15,14 @@ namespace RookiesShop.Api.Controllers
     {
         private RookieShopdbcontext _context;
         private IProductRepository _IproductRepository;
+        private ICategoryRepository _IcategoryRepository;
         private IMapper _mapper;
-        public ProductsController(RookieShopdbcontext context, IProductRepository IproductRepository, IMapper mapper)
+        public ProductsController(RookieShopdbcontext context, IProductRepository IproductRepository, IMapper mapper, ICategoryRepository categoryRepository)
         {
             _IproductRepository = IproductRepository;
             _mapper = mapper;
             _context = context;
+            _IcategoryRepository = categoryRepository;
         }
         [HttpGet]
         public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
@@ -55,8 +57,9 @@ namespace RookiesShop.Api.Controllers
             _IproductRepository.Create(productModel);
             _IproductRepository.SaveChanges();
             //mapp from product to dto
+            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == productModel.CategoryId);
             var productDto =_mapper.Map<ProductDto>(productModel);
-          
+            productDto.CategoryName = category.Name;
             return Ok(productDto);
 
             

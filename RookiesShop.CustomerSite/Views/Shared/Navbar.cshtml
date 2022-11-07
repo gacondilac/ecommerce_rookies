@@ -1,4 +1,17 @@
-﻿<div class="container-fluid mb-2">
+﻿@using System.IdentityModel.Tokens.Jwt
+@using System.Security.Claims
+@{
+    var token = Context.Request.Cookies["jwtToken"];
+    var email = "";
+    if (token!=null)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var userInfo = tokenHandler.ReadJwtToken(token);
+        email = userInfo.Claims.FirstOrDefault(o => o.Type == ClaimTypes.Email)?.Value;
+    }
+}
+
+<div class="container-fluid mb-2">
     <div class="row border-top px-xl-5">
         <div class="col-lg-3 d-none d-lg-block"></div>
         <div class="col-lg-12">
@@ -34,10 +47,15 @@
                             </div>
                         </div>
                     </div>
+                    @if(email!=""){
+                        <h1>@email</h1>
+                    }else{
+
                     <div class="navbar-nav ml-auto py-0">
                         <a  asp-controller="Account" asp-action="Login" class="nav-item nav-link">Login</a>
                         <a asp-controller ="Account" asp-action="Register" class="nav-item nav-link">Register</a>
                     </div>
+                    }
                 </div>
             </nav> 
         </div>

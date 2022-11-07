@@ -2,42 +2,82 @@
 using RookiesShop.Dto;
 using RookiesShop.CustomerSite.Services;
 using Microsoft.AspNetCore.Identity;
+using System.IdentityModel.Tokens.Jwt;
+using System.Reflection.Metadata;
 
 
 namespace RookiesShop.CustomerSite.Controllers
 {
+    [Route("/[controller]/[action]")]
     public class AccountController : Controller
     {
-        //private readonly UserManager<UserDto> _userManager;
-        //private readonly SignInManager<UserDto> _signInManager;
-        //private RoleManager<IdentityRole> _roleManager { get; }
+     
+        private readonly IAccountService _accountService;
+        private string _userId;
+        private string _jwt;
 
-        //public AccountController(UserManager<UserDto> userManager, SignInManager<UserDto> signInManager, RoleManager<IdentityRole> roleManager)
-        //{
-        //    _userManager = userManager;
-        //    _signInManager = signInManager;
-        //    _roleManager = roleManager;
-        //}
-        [HttpGet]
+        public AccountController(IAccountService accountService)
+        {
+            _accountService= accountService;
+        }
         public IActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignInDto signInDto, string ReturnUrl)
+        public async Task<IActionResult> SignIn(SignInDto signInDto)
         {
-            return View(signInDto);
-        }
+            if(ModelState.IsValid)
+            {
+                string stringData =await _accountService.SignIn(signInDto);
+                if(stringData != null)
+                {
+                    var cookieOption = new CookieOptions()
+                    {
+                        HttpOnly = true,
+                        Expires = DateTime.UtcNow.AddMinutes(15),
+                        IsEssential = true
+                    };
+                    Response.Cookies.Append("jwtToken", stringData, cookieOption);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid email and password");
+                }
+            }
 
+            return RedirectToAction("Login");
+        }
+        [HttpGet]
+        public IActionResult LogOut()
+        {
+            //
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult Register()
         {
             return View();
         }
-        //[HttpPost]
-        //public async Task<IActionResult> Register(RegisterDto registerDto)
-        //{
-        //    return RedirectToAction("Register");
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterDto registerDto)
+        {
+
+            if (ModelState.IsValid)
+            {
+                string stringData = await _accountService.Register(registerDto);
+
+                if (stringData == "true")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Failed to register");
+                }
+            }
+            return RedirectToAction("Register");
+        }
 
     }
 }

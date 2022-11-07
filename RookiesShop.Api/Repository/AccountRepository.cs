@@ -55,15 +55,21 @@ namespace RookiesShop.Api.Repository
 
         public async Task<IdentityResult> SignUpAsync(RegisterDto model)
         {
+           
             var user = new User
             {
+                
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 PhoneNumber = model.PhoneNumber,
                 Email = model.Email,
                 UserName = model.Email,
+                
              };
             return await userManager.CreateAsync(user, model.Password);
         }
+
+
     }
 }
+

@@ -15,6 +15,7 @@ builder.Services.AddHttpClient("", opt =>
 });
 // Add Services to DI Container
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 
 
