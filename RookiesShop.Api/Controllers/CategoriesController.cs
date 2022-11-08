@@ -27,7 +27,7 @@ namespace RookiesShop.Api.Controllers
         {
             List<Category> Categories = await _IcategoryRepository.GetCategory();
             List<CategoryDto> CategoryDtos = _mapper.Map<List<CategoryDto>>(Categories);
-            return CategoryDtos;
+            return Ok(CategoryDtos);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryDto>> GetCategoryByIds([FromRoute] int id)
@@ -39,7 +39,7 @@ namespace RookiesShop.Api.Controllers
             }
             CategoryDto CategoryDtos = _mapper.Map<CategoryDto>(Categories);
 
-            return CategoryDtos;
+            return Ok(CategoryDtos);
         }
 
         // GET: api/Product/5

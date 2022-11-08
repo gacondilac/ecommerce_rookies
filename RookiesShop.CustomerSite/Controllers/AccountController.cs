@@ -13,8 +13,6 @@ namespace RookiesShop.CustomerSite.Controllers
     {
      
         private readonly IAccountService _accountService;
-        private string _userId;
-        private string _jwt;
 
         public AccountController(IAccountService accountService)
         {
@@ -53,6 +51,7 @@ namespace RookiesShop.CustomerSite.Controllers
         public IActionResult LogOut()
         {
             //
+            Response.Cookies.Delete("jwtToken");
             return RedirectToAction("Index", "Home");
         }
         public IActionResult Register()

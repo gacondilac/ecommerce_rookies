@@ -40,15 +40,25 @@
                             <div class="dropdown-menu rounded-0 m-0 ">
                                 
                                 <a href="/Home/?Category=1" class="nav-item nav-link dropdown-item">Shirts</a>
+                                <a href="/Home/?Category=2" class="nav-item nav-link dropdown-item">Jackets</a>
                                 <a href="" class="nav-item nav-link dropdown-item">Jeans</a>
                                 <a href="" class="nav-item nav-link dropdown-item">Sportswear</a>
                                 <a href="" class="nav-item nav-link dropdown-item">Blazers</a>
-                                <a href="/?Category=2" class="nav-item nav-link dropdown-item">Jackets</a>
                             </div>
                         </div>
                     </div>
                     @if(email!=""){
-                        <h1>@email</h1>
+                        <div class="nav-item dropdown navbar-nav ml-auto py-0">
+                            <a class="nav-link dropdown-toggle"
+                           href="#"
+                           data-bs-toggle="dropdown">@email</a>
+                            <div class="dropdown-menu rounded-0 m-0 ">
+
+                                <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Đăng xuất</a>
+                               
+                            </div>
+                        </div>
+                    
                     }else{
 
                     <div class="navbar-nav ml-auto py-0">

@@ -12,7 +12,7 @@ using RookiesShop.Api.Data;
 namespace RookiesShop.Api.Migrations
 {
     [DbContext(typeof(RookieShopdbcontext))]
-    [Migration("20221026121607_init")]
+    [Migration("20221108073749_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
