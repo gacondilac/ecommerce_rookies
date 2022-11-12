@@ -68,7 +68,7 @@ namespace RookiesShop.CustomerSite.Controllers
 
                 if (stringData == "true")
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login");
                 }
                 else
                 {

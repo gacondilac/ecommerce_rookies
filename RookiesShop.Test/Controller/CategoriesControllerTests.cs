@@ -12,6 +12,7 @@ using RookiesShop.Dto;
 using RookiesShop.Api.Controllers;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using RookiesShop.Api.Model;
 
 namespace RookiesShop.Test.Controller
 {
@@ -41,6 +42,21 @@ namespace RookiesShop.Test.Controller
             //assert
             result.Should().NotBeNull();
             result.Should().BeOfType(typeof(OkObjectResult));
+        }
+        [Fact]
+        public void CategoryController_CreateCategories_ReturnOK()
+        {
+            var category = A.Fake<Category>();
+            var categoryDto = A.Fake<CategoryCreateDto>();
+            var categories = A.Fake<ICollection<CategoryCreateDto>>();
+            var categoryList = A.Fake<IList<CategoryCreateDto>>();
+            A.CallTo(()=>_mapper.Map<Category>(categoryDto)).Returns(category);
+            var controller = new CategoriesController(_context, _IcategoryRepository, _mapper);
+
+            //act 
+            var result = controller.CreateCategory(categoryDto);
+            //assert
+            result.Should().NotBeNull();
         }
     }
 }

@@ -10,12 +10,7 @@ using System.Text;
 
 namespace RookiesShop.Api.Repository
 {
-    public interface IAccountRepository
-    {
-
-        public Task<IdentityResult> SignUpAsync(RegisterDto model);
-        public Task<string> SignInAsync(SignInDto model);
-    }
+    
     public class AccountRepository : IAccountRepository
     {
         private readonly UserManager<User> userManager;

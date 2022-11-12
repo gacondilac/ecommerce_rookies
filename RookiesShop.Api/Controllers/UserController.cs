@@ -24,13 +24,13 @@ namespace RookiesShop.Api.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200,Type = typeof(List<User>))]
         public async Task<ActionResult<List<UserDto>>> GetAllUsers()
         {
-            
 
             List<User> users = await _userRepository.GetUsers();
             List<UserDto> userDtos = _mapper.Map<List<UserDto>>(users);
-            return userDtos;
+            return Ok(userDtos);
         }
        
 

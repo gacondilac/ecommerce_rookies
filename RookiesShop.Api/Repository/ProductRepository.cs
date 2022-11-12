@@ -1,22 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Common;
 using RookiesShop.Api.Data;
 using RookiesShop.Api.Model;
+using RookiesShop.Api.Paging;
 using RookiesShop.Dto;
 
 namespace RookiesShop.Api.Repository
 {
-    public interface IProductRepository
-    {
-        public Task<List<Product>> GetProducts();
-        public Task<Product> GetProductById(int id);
-        public Task<Product> GetProductByName(string name);
-        public Task Create(Product product);
-        bool SaveChanges();
-        public Task UpdateProduct( ProductDto productDto);
-
-    }
+   
     public class ProductRepository : IProductRepository
     {
         private readonly RookieShopdbcontext _dbContext;
@@ -30,9 +21,10 @@ namespace RookiesShop.Api.Repository
         }
 
         //method
-        public async Task<List<Product>> GetProducts()
+        public PagedList<Product> GetProducts(PageParameters pageParameters)
         {
-            return await _dbContext.Products.Include(product=>product.Category).ToListAsync();
+            return PagedList<Product>.ToPageList(_dbContext.Products.Include(product => product.Category),
+                pageParameters.PageNumber, pageParameters.PageSize);
         }
         public async Task<Product> GetProductById(int Id)
         {
