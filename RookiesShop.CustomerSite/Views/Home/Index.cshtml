@@ -1,0 +1,46 @@
+﻿@model IEnumerable<RookiesShop.Dto.ProductDto>
+@{
+    ViewData["Title"] = "Home";
+}
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+<partial name="Banner"></partial>
+<div class="container-fluid pt-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5">
+            <span class="px-2">Trendy Products</span>
+        </h2>
+    </div>
+    <section id="product1" class="section-p1 row px-xl-5 pb-3">
+        <div class="pro-container row px-xl-5 pb-3">
+            @if (Model != null)
+            {
+                @foreach( var item in Model)
+                {
+                    <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                        <div class="pro mb-4">
+                            @{
+                                var path = "../img/products/" + item.Image  + ".jpg";
+                            }
+                            <img src=@path alt="" />
+                            <div class="des">
+                                <span>@item.Name </span>
+                                <h5>@item.Description</h5>
+                                <div class="star">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <h4>$@item.Price</h4>
+                            </div>
+                            <a asp-controller="Detail" asp-action="Index" asp-route-id="@item.Id"><i class="fa-solid fa-cart-shopping cart" ></i></a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+</div>
