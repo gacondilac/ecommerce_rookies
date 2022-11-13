@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RookiesShop.Api.Data;
-using RookiesShop.Api.Models;
+using RookiesShop.Api.Model;
+using RookiesShop.Api.Repository;
+using RookiesShop.Dto;
 
 namespace RookiesShop.Api.Controllers
 {
@@ -15,88 +13,80 @@ namespace RookiesShop.Api.Controllers
     public class ProductsController : ControllerBase
 
     {
-
-        private readonly RookieShopdbcontext _context;
-
-        public ProductsController(RookieShopdbcontext context)
+        private RookieShopdbcontext _context;
+        private IProductRepository _IproductRepository;
+        private ICategoryRepository _IcategoryRepository;
+        private IMapper _mapper;
+        public ProductsController(RookieShopdbcontext context, IProductRepository IproductRepository, IMapper mapper, ICategoryRepository categoryRepository)
         {
+            _IproductRepository = IproductRepository;
+            _mapper = mapper;
             _context = context;
+            _IcategoryRepository = categoryRepository;
         }
-
-        // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> Getproducts()
+        public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
         {
-            return await _context.products.ToListAsync();
+            List<Product> Products = await _IproductRepository.GetProducts();
+            List<ProductDto> ProductsDtos = _mapper.Map<List<ProductDto>>(Products);
+            return ProductsDtos;
         }
 
-        // GET: api/Products/5
+        // GET: api/Product/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductDto>> GetProductByIds([FromRoute] int id)
         {
-            var product = await _context.products.FindAsync(id);
-
-            if (product == null)
+            Product Products = await _IproductRepository.GetProductById(id);
+            if(Products == null)
             {
-                return NotFound();
+                return NotFound("No product with Given Id");
             }
+            ProductDto ProductDtos = _mapper.Map<ProductDto>(Products);
 
-            return product;
+            return ProductDtos;
+        }
+        //done
+        
+        // POST: api/Products
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<ProductCreateDto>> CreateProduct(ProductCreateDto productCreateDto)
+        {
+            //mapping to data
+            var productModel=_mapper.Map<Product>(productCreateDto);
+            _IproductRepository.Create(productModel);
+            _IproductRepository.SaveChanges();
+            //mapp from product to dto
+            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == productModel.CategoryId);
+            var productDto =_mapper.Map<ProductDto>(productModel);
+            productDto.CategoryName = category.Name;
+            return Ok(productDto);
+
+            
         }
 
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct( ProductDto productDto)
         {
-            if (id != product.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(product).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+           
+            await _IproductRepository.UpdateProduct(productDto);
+            return Ok();
         }
 
-        // POST: api/Products
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
-        {
-            _context.products.Add(product);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProduct", new { id = product.ID }, product);
-        }
-
+       
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var product = await _context.products.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            _context.products.Remove(product);
+            _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -104,8 +94,19 @@ namespace RookiesShop.Api.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.products.Any(e => e.ID == id);
+            return _context.Products.Any(e => e.Id == id);
         }
+
+        //private readonly IMapper _mapper;
+        //public ProductsController(IMapper mapper)
+        //{
+        //    _mapper = mapper;
+        //}
+        //[HttpGet]
+        //public ActionResult<List<Product>> GetProduct()
+        //{
+        //    return Ok(_context.Products.Select(Product=> _mapper.Map<ProductDto>(Product)));
+        //}
     }
 }
 

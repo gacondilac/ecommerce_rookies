@@ -1,21 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
-namespace RookiesShop.Api.Models
+namespace RookiesShop.Api.Model
 {
-    public class User
+    public class User : IdentityUser
     {
-        [Key]
-        public int ID { get; set; }
-        [Required]
-        public string FullName { get; set; }
-        [Required(ErrorMessage = "Please fill in the required information")]
-        public string Email { get; set; }
-        [Required(ErrorMessage = "Please fill in the required information")]
-        public string PhoneNumber { get; set; }
-        [Required(ErrorMessage = "Please fill in the required information")]
-        public string Address { get; set; }
-        [Required(ErrorMessage = "Please fill in the required information")]
-        public string Password { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public List<Order> Orders { get; set; }
+        
+    
 
     }
 }

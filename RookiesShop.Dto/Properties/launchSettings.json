@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RookiesShop.Dto": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:7082;http://localhost:7083"
+    }
+  }
+}

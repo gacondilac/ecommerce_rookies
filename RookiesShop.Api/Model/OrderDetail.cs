@@ -1,20 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RookiesShop.Api.Models
+namespace RookiesShop.Api.Model
 {
     public class OrderDetail
     {
         [Key]
-        public int ID { get; set; }
-        public int UserID { get; set; }
+        public int Id { get; set; }
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
         [Required]
-        public int NumProduct { get; set; }
-        [Required]
-        [Column("TotalPrice")]
-        public float Total { get; set; }
-        
+        [Column("Number Of product")]
+        public int Amount { get; set; }
 
+        public Order Order { get; set; }
+        public Product Product { get; set; }
 
     }
 }
