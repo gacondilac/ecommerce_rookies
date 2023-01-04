@@ -7,15 +7,7 @@ using RookiesShop.Dto;
 
 namespace RookiesShop.Api.Repository
 {
-    public interface ICategoryRepository
-    {
-        public Task<List<Category>> GetCategory();
-        public Task<Category> GetCategoryById(int id);
-        public Task Create(Category category);
-        bool SaveChanges();
-        public Task UpdateCategory(CategoryDto categoryDto);
-
-    }
+  
     public class CategoryRepository : ICategoryRepository
     {
         private readonly RookieShopdbcontext _dbContext;

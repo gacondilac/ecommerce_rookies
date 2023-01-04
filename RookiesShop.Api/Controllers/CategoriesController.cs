@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 using RookiesShop.Api.Data;
 using RookiesShop.Api.Model;
 using RookiesShop.Api.Repository;
@@ -23,6 +23,7 @@ namespace RookiesShop.Api.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Category>))]
         public async Task<ActionResult<List<CategoryDto>>> GetAllCategories()
         {
             List<Category> Categories = await _IcategoryRepository.GetCategory();

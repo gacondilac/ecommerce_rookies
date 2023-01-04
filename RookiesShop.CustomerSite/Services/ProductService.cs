@@ -3,12 +3,6 @@ using RookiesShop.Dto;
 using RookiesShop.CustomerSite.DataAccess;
 namespace RookiesShop.CustomerSite.Services
 {
-    public interface IProductService
-    {
-        public Task<IEnumerable<ProductDto>> GetProducts();
-        public Task<ProductDto> GetProductById(int id);
-
-    }
     public class ProductService : IProductService
     {
         private readonly IProductData _productInterface;

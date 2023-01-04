@@ -1,25 +1,19 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using NuGet.Common;
-using RookiesShop.Api.Data;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using RookiesShop.Api.Model;
+using RookiesShop.Dto;
+
 
 namespace RookiesShop.Api.Repository
 {
-    public interface IUserRepository
-    {
-        public Task<List<User>> GetUsers();
-
-
-    }
     public class UserRepository : IUserRepository
     {
-        private RookieShopdbcontext _dbContext;
-      private UserManager<User> _userManager;
+        private UserManager<User> _userManager;
+        
 
-        public UserRepository(RookieShopdbcontext dbContext,  UserManager<User> userManager )
+        public UserRepository(UserManager<User> userManager)
         {
-            _dbContext = dbContext;
+           
             _userManager = userManager;
         }
 
@@ -27,7 +21,7 @@ namespace RookiesShop.Api.Repository
         public async Task<List<User>> GetUsers()
         {
            
-              return _userManager.Users.ToList();
+            return  _userManager.Users.ToList();
            
         }
         

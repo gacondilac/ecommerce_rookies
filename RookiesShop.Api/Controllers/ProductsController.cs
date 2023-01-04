@@ -25,11 +25,11 @@ namespace RookiesShop.Api.Controllers
             _IcategoryRepository = categoryRepository;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ProductDto>>> GetAllProducts()
+        public async Task<ActionResult<List<ProductDto>>> GetAllProducts([FromQuery] PageParameters pageParameters)
         {
-            List<Product> Products = await _IproductRepository.GetProducts();
+            List<Product> Products = _IproductRepository.GetProducts( pageParameters);
             List<ProductDto> ProductsDtos = _mapper.Map<List<ProductDto>>(Products);
-            return ProductsDtos;
+            return Ok(ProductsDtos);
         }
 
         // GET: api/Product/5
@@ -43,7 +43,7 @@ namespace RookiesShop.Api.Controllers
             }
             ProductDto ProductDtos = _mapper.Map<ProductDto>(Products);
 
-            return ProductDtos;
+            return Ok(ProductDtos);
         }
         //done
         
